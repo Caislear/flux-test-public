@@ -9,13 +9,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: pull-request
-      uses: repo-sync/pull-request@v2
+    - name: Create Pull Request
+      id: cpr
+      uses: peter-evans/create-pull-request@v3
       with:
-        pr_title: Automerge flux dev image update
-        pr_label: "flux-auto-pr" 
-        destination_branch: "main"
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+        delete-branch: true
+        title: Automerge flux dev image update
+        labels: "flux-auto-pr" 
+        reviewers: "Caislear"
+    - name: Enable Pull Request Automerge
+      if: steps.cpr.outputs.pull-request-operation == 'created'
+      uses: peter-evans/enable-pull-request-automerge@v2
+      with:
+        token: ${{ secrets.REPO_PAT_CAISLEAR }}
+        pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
+        merge-method: squash
+    - name: Auto approve
+      if: steps.cpr.outputs.pull-request-operation == 'created'
+      uses: juliangruber/approve-pull-request-action@v2
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        number: ${{ steps.cpr.outputs.pull-request-number }}
 
 # https://github.com/peter-evans/enable-pull-request-automerge
 # https://github.com/marketplace/actions/create-pull-request
