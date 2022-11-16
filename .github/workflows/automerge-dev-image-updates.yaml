@@ -15,7 +15,7 @@ jobs:
       with:
         branch: ${{ github.ref_name }}
         title: Automerge flux dev image update
-        lables: "flux-auto-pr" 
+        labels: "flux-auto-pr" 
     # - name: Enable Pull Request Automerge
     #   if: steps.cpr.outputs.pull-request-operation == 'created'
     #   uses: peter-evans/enable-pull-request-automerge@v2
