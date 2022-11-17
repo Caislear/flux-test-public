@@ -26,7 +26,7 @@ jobs:
     - name: Auto approve PR
       uses: juliangruber/approve-pull-request-action@v2
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.REPO_PAT_CAISLEAR }}
         number: ${{ steps.cpr.outputs.pr_number }}
 
 # https://github.com/peter-evans/enable-pull-request-automerge
