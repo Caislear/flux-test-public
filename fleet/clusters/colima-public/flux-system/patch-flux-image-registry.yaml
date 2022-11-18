@@ -1,0 +1,66 @@
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: helm-controller
+    spec:
+      template:
+        spec:
+          containers:
+            - name: manager
+              image: europe-west3-docker.pkg.dev/y42-artifacts-ea47981a/test/helm-controller:latest
+    ---
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: image-automation-controller
+    spec:
+      template:
+        spec:
+          containers:
+            - name: manager
+              image: europe-west3-docker.pkg.dev/y42-artifacts-ea47981a/test/image-automation-controller:latest
+    ---
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: image-reflector-controller
+    spec:
+      template:
+        spec:
+          containers:
+            - name: manager
+              image: europe-west3-docker.pkg.dev/y42-artifacts-ea47981a/test/image-reflector-controller:latest
+    ---
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: kustomize-controller
+    spec:
+      template:
+        spec:
+          containers:
+            - name: manager
+              image: europe-west3-docker.pkg.dev/y42-artifacts-ea47981a/test/kustomize-controller:latest
+    ---
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: notification-controller
+    spec:
+      template:
+        spec:
+          containers:
+            - name: manager
+              image: europe-west3-docker.pkg.dev/y42-artifacts-ea47981a/test/notification-controller:latest
+    ---
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: source-controller
+    spec:
+      template:
+        spec:
+          containers:
+            - name: manager
+              image: europe-west3-docker.pkg.dev/y42-artifacts-ea47981a/test/source-controller:latest
+    ---
