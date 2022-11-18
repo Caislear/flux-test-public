@@ -7767,7 +7767,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: ghcr.io/fluxcd/helm-controller:v0.26.0
+        image: europe-west3-docker.pkg.dev/y42-artifacts-ea47981a/main/helm-controller:v0.26.0
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -7850,7 +7850,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: ghcr.io/fluxcd/image-automation-controller:v0.26.1
+        image: europe-west3-docker.pkg.dev/y42-artifacts-ea47981a/main/image-automation-controller:v0.26.1
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -7933,7 +7933,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: ghcr.io/fluxcd/image-reflector-controller:v0.22.1
+        image: europe-west3-docker.pkg.dev/y42-artifacts-ea47981a/main/image-reflector-controller:v0.22.1
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -8020,7 +8020,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: ghcr.io/fluxcd/kustomize-controller:v0.30.0
+        image: europe-west3-docker.pkg.dev/y42-artifacts-ea47981a/main/kustomize-controller:v0.30.0
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -8102,7 +8102,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: ghcr.io/fluxcd/notification-controller:v0.28.0
+        image: europe-west3-docker.pkg.dev/y42-artifacts-ea47981a/main/notification-controller:v0.28.0
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -8197,7 +8197,7 @@ spec:
               fieldPath: metadata.namespace
         - name: TUF_ROOT
           value: /tmp/.sigstore
-        image: ghcr.io/fluxcd/source-controller:v0.31.0
+        image: europe-west3-docker.pkg.dev/y42-artifacts-ea47981a/main/source-controller:v0.31.0
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
