@@ -13,7 +13,7 @@ jobs:
       id: cpr
       uses: repo-sync/pull-request@v2
       with:
-        pr_title: "Automerge flux dev image: ${${GITHUB_REF##*/}:9}"
+        pr_title: 'Automerge flux dev image: ${${GITHUB_REF##*/}:9}''
         pr_label: "flux-auto-pr" 
         pr_reviewer: "Caislear"
         destination_branch: "main"
