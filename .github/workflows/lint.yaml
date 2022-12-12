@@ -3,12 +3,12 @@ on:
   pull_request:
 jobs:
   fmt:
+    #if: "!contains('refs/heads/flux-', github.ref)"
     name: terraform-fmt
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Check format
-        # if: !"contains('refs/heads/flux-', github.ref)"
+      - name: Check format 
         run: terraform fmt -check -recursive
 
