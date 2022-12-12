@@ -4,7 +4,7 @@ on:
     types: [opened, reopened]
 jobs:
   terraform-lint:
-    #if: "!contains('refs/heads/flux-', github.ref)"
+    if: "!contains('refs/heads/flux-', github.ref)"
     name: terraform-fmt
     runs-on: ubuntu-latest
     steps:
