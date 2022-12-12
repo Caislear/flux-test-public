@@ -2,7 +2,7 @@ name: terraform-lint
 on:
   pull_request:
 jobs:
-  fmt:
+  terraform-lint:
     #if: "!contains('refs/heads/flux-', github.ref)"
     name: terraform-fmt
     runs-on: ubuntu-latest
