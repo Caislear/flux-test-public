@@ -5,12 +5,14 @@ on:
     - flux-dev-*
 jobs:
   check-for-flux:
-      outputs:
-        status: "startsWith( (github.head_ref || github.ref_name) , 'flux-')"
-      steps:
-        - id: test-if-flux-branch
-          name: Flux branch test
-          run: echo 'Check if flux'
+    name: Check if Flux branch
+    runs-on: ubuntu-latest
+    outputs:
+      status: "startsWith( (github.head_ref || github.ref_name) , 'flux-')"
+    steps:
+      - id: test-if-flux-branch
+        name: Flux branch test
+        run: echo 'Check if flux'
 
   terraform-lint:
     needs: check-for-flux
