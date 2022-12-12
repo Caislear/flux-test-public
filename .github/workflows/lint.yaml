@@ -15,7 +15,7 @@ jobs:
         run: |-
         echo "head_ref: $GITHUB_HEAD_REF" && 
         echo "ref_name: $GITHUB_REF_NAME" && 
-        echo "STATUS=$IS_FLUX" >> $GITHUB_OUTPUT
+        echo "STATUS=${$IS_FLUX}" >> $GITHUB_OUTPUT
 
   terraform-lint:
     needs: check-for-flux
