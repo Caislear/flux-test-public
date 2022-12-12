@@ -4,15 +4,17 @@ on:
     branches:
     - flux-dev-*
 jobs:
-  check-if-flux-branch:
+  check-for-flux:
       outputs:
         status: "startsWith( (github.head_ref || github.ref_name) , 'flux-')"
       steps:
         - id: test-if-flux-branch
           name: Flux branch test
+          run: echo 'Check if flux'
+
   terraform-lint:
-    needs: check-if-flux-branch
-    if: "!needs.check-if-flux-branch.outputs.status"
+    needs: check-for-flux
+    if: "!needs.check-for-flux.outputs.status"
     name: terraform-fmt
     runs-on: ubuntu-latest
     steps:
