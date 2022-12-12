@@ -4,7 +4,7 @@ on:
     types: [opened, reopened]
 jobs:
   terraform-lint:
-    if: "!startsWith(github.ref_name, 'flux-')"
+    if: "!startsWith( ${{ github.head_ref || github.ref_name }} , 'flux-')"
     name: terraform-fmt
     runs-on: ubuntu-latest
     steps:
