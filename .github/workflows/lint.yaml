@@ -20,7 +20,7 @@ jobs:
 
   terraform-lint:
     needs: check-for-flux
-    if: "!needs.check-for-flux.is-flux-branch.outputs.STATUS"
+    if: "!needs.check-for-flux.outputs.STATUS"
     name: terraform-fmt
     runs-on: ubuntu-latest
     steps:
