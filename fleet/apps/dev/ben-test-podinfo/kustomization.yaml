@@ -5,7 +5,7 @@ resources:
 namespace: app-1
 labels:
   - pairs:
-      tags.datadoghq.com/version: 968f3d4-202211100913 # {"$imagepolicy": "flux-system:ben-test-podinfo:tag"}
+      tags.datadoghq.com/version: 968f3d4-202211100912 # {"$imagepolicy": "flux-system:ben-test-podinfo:tag"}
       test.label: hello-world4
     includeTemplates: true
 commonLabels:
