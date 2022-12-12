@@ -7,16 +7,16 @@ jobs:
   check-for-flux:
     name: Check if Flux branch
     runs-on: ubuntu-latest
-    outputs:
-      status: "startsWith( (github.head_ref || github.ref_name) , 'flux-')"
     steps:
-      - id: test-if-flux-branch
+      - id: is-flux-branch
         name: Flux branch test
-        run: echo 'Check if flux'
+        env:
+          STATUS: ${{ "startsWith( (github.head_ref || github.ref_name) , 'flux-')"
+        run: echo "head_ref: $GITHUB_HEAD_REF" && echo "ref_name: $GITHUB_REF_NAME" && echo "STATUS=$STATUS" >> $GITHUB_OUTPUT
 
   terraform-lint:
     needs: check-for-flux
-    if: "!needs.check-for-flux.outputs.status"
+    if: "!needs.check-for-flux.is-flux-branch.outputs.STATUS"
     name: terraform-fmt
     runs-on: ubuntu-latest
     steps:
