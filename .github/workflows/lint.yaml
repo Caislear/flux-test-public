@@ -3,6 +3,7 @@ on:
   push:
     branches:
     - flux-dev-*
+    - main
 jobs:
   check-for-flux:
     name: Check if Flux branch
