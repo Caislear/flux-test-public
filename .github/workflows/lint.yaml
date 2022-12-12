@@ -12,7 +12,7 @@ jobs:
       - id: is-flux-branch
         name: Flux branch test
         env:
-          IS_FLUX: ${{ "startsWith( (github.head_ref || github.ref_name) , 'flux-')" }}
+          IS_FLUX: "startsWith( (github.head_ref || github.ref_name) , 'flux-')"
         run: |-
           echo "head_ref: $GITHUB_HEAD_REF" && 
           echo "ref_name: $GITHUB_REF_NAME" && 
