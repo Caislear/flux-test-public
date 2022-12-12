@@ -16,6 +16,7 @@ jobs:
       id: cpr
       uses: repo-sync/pull-request@v2
       with:
+        github_token: ${{ secrets.REPO_PAT_CAISLEAR }}
         pr_title: "Automerge flux dev image: ${IMAGE_NAME}"
         pr_label: "flux-auto-pr" 
         pr_reviewer: "Caislear"
@@ -30,7 +31,7 @@ jobs:
     - name: Auto approve PR
       uses: juliangruber/approve-pull-request-action@v2
       with:
-        github-token: ${{ secrets.REPO_PAT_CAISLEAR }}
+        github-token: ${{ secrets.secrets.GITHUB_TOKEN }}
         number: ${{ steps.cpr.outputs.pr_number }}
 
 # https://github.com/peter-evans/enable-pull-request-automerge
