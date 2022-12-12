@@ -1,6 +1,7 @@
 name: terraform-lint
 on:
   pull_request:
+    types: [opened, reopened]
 jobs:
   terraform-lint:
     #if: "!contains('refs/heads/flux-', github.ref)"
