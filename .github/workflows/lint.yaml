@@ -4,7 +4,7 @@ on:
     types: [opened, reopened]
 jobs:
   terraform-lint:
-    if: "!startsWith(github.ref, 'refs/heads/flux-')"
+    if: "!startsWith(github.ref_name, 'flux-')"
     name: terraform-fmt
     runs-on: ubuntu-latest
     steps:
@@ -12,4 +12,6 @@ jobs:
         uses: actions/checkout@v3
       - name: Check format 
         run: terraform fmt -check -recursive
+      - name: Wait
+        run: sleep 10000
 
