@@ -1,7 +1,8 @@
 name: terraform-lint
 on:
-  pull_request:
-    types: [opened, reopened]
+  push:
+    branches:
+    - flux-dev-*
 jobs:
   terraform-lint:
     if: "!startsWith( (github.head_ref || github.ref_name) , 'flux-')"
