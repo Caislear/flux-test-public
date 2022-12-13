@@ -3,6 +3,6 @@ kind: Kustomization
 resources:
   - ../../base/ben-test-podinfo
 images:
-  - name: job-monitor
+  - name: ben-test-podinfo
     newName: temp # {"$imagepolicy": "flux-system:ben-test-podinfo:name"}
     newTag: temp # {"$imagepolicy": "flux-system:ben-test-podinfo:tag"}
