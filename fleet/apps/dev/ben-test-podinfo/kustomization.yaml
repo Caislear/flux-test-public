@@ -1,17 +1,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - manifests.yaml
-namespace: app-1
-labels:
-  - pairs:
-      tags.datadoghq.com/version: 968f3d4-202211100913 # {"$imagepolicy": "flux-system:ben-test-podinfo:tag"}
-      test.label: hello-world4
-    includeTemplates: true
-commonLabels:
-  app: image-podinfo
-
-# images:
-# - name: service-image-name
-#   newName:  temp # {"$imagepolicy": "flux-system:ben-test-podinfo:name"}
-#   newTag: start # {"$imagepolicy": "flux-system:iben-test-podinfo:tag"}
+  - ../../base/ben-test-podinfo
+images:
+  - name: job-monitor
+    newName: temp # {"$imagepolicy": "flux-system:ben-test-podinfo:name"}
+    newTag: temp # {"$imagepolicy": "flux-system:ben-test-podinfo:tag"}

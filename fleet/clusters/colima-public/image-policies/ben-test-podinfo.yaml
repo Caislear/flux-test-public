@@ -1,0 +1,14 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: ben-test-podinfo
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: ben-test-podinfo
+  filterTags:
+    pattern: ^[a-fA-F0-9]+-(?P<ts>[\d]+)
+    extract: $ts
+  policy:
+    numerical:
+      order: asc
