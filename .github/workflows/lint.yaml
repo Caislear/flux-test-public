@@ -9,7 +9,7 @@ jobs:
     name: Check if Flux branch
     runs-on: ubuntu-latest
     outputs: 
-      status: ${{ steps.check-for-flux.outputs.STATUS }}
+      is_flux_branch: ${{ steps.check-for-flux.outputs.STATUS }}
     steps:
       - name: Flux branch test
         id: check-for-flux
@@ -18,7 +18,7 @@ jobs:
           TEST_CONDITION: ${{ startsWith( (github.head_ref || github.ref_name) , 'flux-') }}
         run: |-
           echo "head_ref: ${GITHUB_HEAD_REF:0:5}" && echo "ref_name: ${GITHUB_REF_NAME:0:5}"
-          ([[ ${GITHUB_HEAD_REF:0:5} == "$FLUX_STRING" ]] || [[ ${GITHUB_REF_NAME:0:5} == "$FLUX_STRING" ]]) && IS=True || IS=False
+          ([[ ${GITHUB_HEAD_REF:0:5} == "$FLUX_STRING" ]] || [[ ${GITHUB_REF_NAME:0:5} == "$FLUX_STRING" ]]) && IS=true || IS=false
           echo $TEST_CONDITION
           echo STATUS=$IS >> $GITHUB_OUTPUT
 
@@ -29,11 +29,11 @@ jobs:
     steps:
       - name: output
         env: 
-          OUTPUT: ${{ needs.check-for-flux.outputs.status }}
+          OUTPUT: ${{ needs.check-for-flux.outputs.is_flux_branch }}
         run: echo $OUTPUT
   terraform-lint:
     needs: check-for-flux
-    if: "!needs.check-for-flux.outputs.status"
+    if: needs.check-for-flux.outputs.is_flux_branch == 'false'
     name: terraform-fmt
     runs-on: ubuntu-latest
     steps:
