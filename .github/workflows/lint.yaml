@@ -14,11 +14,11 @@ jobs:
       - name: Flux branch test
         id: check-for-flux
         env:
-          IS_FLUX: "startsWith( (github.head_ref || github.ref_name) , 'flux-')"
+          FLUX_STRING: 'flux-'
         run: |-
-          echo "head_ref: $GITHUB_HEAD_REF" && 
-          echo "ref_name: $GITHUB_REF_NAME" && 
-          echo "STATUS=$IS_FLUX" >> $GITHUB_OUTPUT
+          echo "head_ref: ${GITHUB_HEAD_REF:0:5}" && echo "ref_name: ${GITHUB_REF_NAME:0:5}"
+          ([[ ${GITHUB_HEAD_REF:0:5} == "$FLUX_STRING" ]] || [[ ${GITHUB_REF_NAME:0:5} == "$FLUX_STRING" ]]) && IS=true || IS=false
+          echo STATUS=$IS >> $GITHUB_OUTPUT
 
   terraform-lint:
     needs: check-for-flux
