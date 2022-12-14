@@ -15,11 +15,22 @@ jobs:
         id: check-for-flux
         env:
           FLUX_STRING: 'flux-'
+          TEST_CONDITION: "startsWith( (github.head_ref || github.ref_name) , 'flux-')"
         run: |-
           echo "head_ref: ${GITHUB_HEAD_REF:0:5}" && echo "ref_name: ${GITHUB_REF_NAME:0:5}"
           ([[ ${GITHUB_HEAD_REF:0:5} == "$FLUX_STRING" ]] || [[ ${GITHUB_REF_NAME:0:5} == "$FLUX_STRING" ]]) && IS=true || IS=false
+          echo $TEST_CONDITION
           echo STATUS=$IS >> $GITHUB_OUTPUT
 
+  output-status-check:
+    needs: check-for-flux
+    name: output-status
+    runs-on: ubuntu-latest
+    steps:
+      - name: output
+        env: 
+          OUTPUT: needs.check-for-flux.outputs.status
+        run: echo $OUTPUT
   terraform-lint:
     needs: check-for-flux
     if: "!needs.check-for-flux.outputs.status"
