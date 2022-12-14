@@ -4,6 +4,7 @@ on:
     branches:
     - flux-dev-*
     - main
+  pull_request:
 jobs:
   check-for-flux:
     name: Check if Flux branch
