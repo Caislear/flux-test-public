@@ -15,10 +15,10 @@ jobs:
         id: check-for-flux
         env:
           FLUX_STRING: 'flux-'
-          TEST_CONDITION: $ {{ startsWith( (github.head_ref || github.ref_name) , 'flux-') }}
+          TEST_CONDITION: ${{ startsWith( (github.head_ref || github.ref_name) , 'flux-') }}
         run: |-
           echo "head_ref: ${GITHUB_HEAD_REF:0:5}" && echo "ref_name: ${GITHUB_REF_NAME:0:5}"
-          ([[ ${GITHUB_HEAD_REF:0:5} == "$FLUX_STRING" ]] || [[ ${GITHUB_REF_NAME:0:5} == "$FLUX_STRING" ]]) && IS=true || IS=false
+          ([[ ${GITHUB_HEAD_REF:0:5} == "$FLUX_STRING" ]] || [[ ${GITHUB_REF_NAME:0:5} == "$FLUX_STRING" ]]) && IS=True || IS=False
           echo $TEST_CONDITION
           echo STATUS=$IS >> $GITHUB_OUTPUT
 
