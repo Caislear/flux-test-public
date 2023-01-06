@@ -1,4 +1,4 @@
-name: Flux create dev prs
+name: Flux create and automerge dev prs
 on:
   push:
     branches:
@@ -12,7 +12,7 @@ jobs:
     - name: Get image name from branch
       run:
         IMAGE_NAME="${GITHUB_REF##*/}" && IMAGE_NAME=${IMAGE_NAME:9} && echo "IMAGE_NAME=$IMAGE_NAME" >> "$GITHUB_ENV"
-    - name: pull-request
+    - name: create pull-request
       id: cpr
       uses: repo-sync/pull-request@v2
       with:
@@ -20,8 +20,16 @@ jobs:
         pr_title: "Automerge flux dev image: ${{ env.IMAGE_NAME }}"
         pr_label: "flux-auto-pr" 
         destination_branch: "main"
+    - name: enable automerge
+      uses: reitermarkus/automerge@v2
+      with:
+        token: ${{ secrets.REPO_PAT_CAISLEAR }}
+        merge-method: squash
+        required-labels: flux-auto-pr
+        squash-commit-title: ${pull_request.title}
+        pull-request: ${{ steps.cpr.outputs.pr_number }}
     # condition to check that there is only one commit on this branch by specific user only
-    - name: Auto approve PR
+    - name: auto approve PR
       uses: juliangruber/approve-pull-request-action@v2
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
