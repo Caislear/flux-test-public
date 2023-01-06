@@ -1,4 +1,4 @@
-name: Automerge flux image updates
+name: Flux create dev prs
 on:
   push:
     branches:
