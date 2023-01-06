@@ -1,0 +1,24 @@
+name: Flux Automerge Dev Prs
+
+on:
+  push:
+  pull_request_target:
+    types:
+      - opened
+jobs:
+  automerge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: reitermarkus/automerge@v2
+        with:
+          token: ${{ secrets.REPO_PAT_CAISLEAR }}
+          merge-method: squash
+          required-labels: flux-auto-pr
+          squash-commit-title: ${pull_request.title}
+
+    - name: Enable Pull Request Automerge
+      uses: peter-evans/enable-pull-request-automerge@v2
+      with:
+        token: ${{ secrets.REPO_PAT_CAISLEAR }}
+        pull-request-number: ${{ steps.cpr.outputs.pr_number }}
+        merge-method: squash

@@ -17,15 +17,9 @@ jobs:
       uses: repo-sync/pull-request@v2
       with:
         github_token: ${{ secrets.REPO_PAT_CAISLEAR }}
-        pr_title: "Automerge flux dev image: ${IMAGE_NAME}"
+        pr_title: "Automerge flux dev image: ${{ env.IMAGE_NAME }}"
         pr_label: "flux-auto-pr" 
         destination_branch: "main"
-    - name: Enable Pull Request Automerge
-      uses: peter-evans/enable-pull-request-automerge@v2
-      with:
-        token: ${{ secrets.REPO_PAT_CAISLEAR }}
-        pull-request-number: ${{ steps.cpr.outputs.pr_number }}
-        merge-method: squash
     # condition to check that there is only one commit on this branch by specific user only
     - name: Auto approve PR
       uses: juliangruber/approve-pull-request-action@v2
